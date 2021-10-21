@@ -1,0 +1,29 @@
+stages:
+  - test
+
+.automated_tests:
+  stage: test
+  image: maven:3.8-openjdk-17
+  script:
+    - 'mvn clean test'
+  allow_failure: false
+
+selenium:
+  extends: .automated_tests
+  when: manual
+  artifacts:
+    name: "selenium"
+    when: on_failure
+    paths:
+      - selenium_tests/target/allure-results
+    expire_in: 3 day
+
+rest-assured:
+  extends: .automated_tests
+    when: manual
+    artifacts:
+      name: "rest-assured"
+      when: on_failure
+      paths:
+        - rest-assured_tests/target/allure-results
+      expire_in: 3 day

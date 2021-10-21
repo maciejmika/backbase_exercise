@@ -1,0 +1,32 @@
+language: java
+
+jdk:
+  - openjdk17
+
+env:
+  global:
+    #secure variable contains values for AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY - incorrect key, for example purposes only
+    - secure: VqGgcLxY0P2dwRwuLibOo/O4NhZaHmSD5hgZSmJHyylgradmqI87S9xDnZZfHci9PTIiKPvQRlmSUVV0qLEHOM/E/SbSce3czrW2eZ7rDYiCec4LUEuImgMduCFBP4129SgUAo+86sKEQcL8BGL4ScCS7sxuHitBTh9u8QTDQ4o3nNeoG2uwA1oR3kFR1v3+xXhGeQvtQsnPAAnqxt+fbygLGoezR3rqttpfXUafXH7Mlz0EP79OIZgkRJbY0en/y2iZ51LfD/BC5Gchmkyw3D9XvcsmIhkCUmgONGhZ/b99OqMixKz1KrbC1X3U33W1TKzN0J3PZjf1es4ucJrr==
+    - AWS_S3_BUCKET: s3://exampletestbucket
+    - AWS_S3_REGION: eu-central-1
+    - SELENIUM_TEST_RESULTS_DIR : $SHIPPABLE_REPO_DIR/rest-assured_tests/target/allure-results
+    - REST_ASSURED_TEST_RESULTS_DIR : $SHIPPABLE_REPO_DIR/selenium_tests/target/allure-results
+
+build:
+  pre_ci_boot:
+    image_name: drydock/u16javall
+    image_tag: v7.2.4
+    pull: true
+
+  ci:
+    - cd rest-assured_tests
+    - mvn clean test
+    - cd ..
+    - cd selenium_tests
+    - mvn clean test
+
+  advancedReporting: true
+  always:
+     - aws s3 sync $SELENIUM_TEST_RESULTS_DIR $AWS_S3_BUCKET --region $AWS_S3_REGION
+     - aws s3 sync $REST_ASSURED_TEST_RESULTS_DIR $AWS_S3_BUCKET --region $AWS_S3_REGION
+

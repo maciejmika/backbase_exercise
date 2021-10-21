@@ -1,0 +1,17 @@
+{
+  "browsers": [
+    [
+      {
+        "type": "chrome-in-docker",
+        "version": "latest"
+      }
+    ],
+    [
+      {
+        "type": "firefox-in-docker",
+        "version": "latest"
+      }
+    ]
+  ]
+}
+
