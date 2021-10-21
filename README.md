@@ -11,13 +11,17 @@ Bugs that I caught along with suggestions for improvements can be found in excel
 I created 2 test files with 5 tests in total, for sign-In and article features.
 
 ## How to run
-run 'mvn clean test' inside 'rest-assured_tests' directory
-To generate and open allure report, run:
-'allure generate target/allure-results --clean'
-'allure open'
+run below commands:
+  1. 'mvn clean install -DskipTests' in main directory
+  2. 'mvn clean test allure:report' inside 'rest-assured_tests' directory
 
+To generate and open allure report, first add absolute path of allure/bin folder (which should be located in "/rest-assured_tests/.allure/allure-2.14.0/bin") to PATH Environment Variable,
+  then run:
+1. 'allure generate target/allure-results --clean'
+2. 'allure open'
 ## Most important tools and libraries used:
 - Java 17
+- Maven 3.8.3 
 - Junit 5
 - Rest-Assured
 - Allure reports
@@ -34,13 +38,18 @@ To generate and open allure report, run:
 I created 2 test files with 4 tests in total, for sign-In and article features.
 
 ## How to run
-run 'mvn clean test' inside 'selenium_tests' directory
-To generate and open allure report, run:
-'allure generate target/allure-results --clean'
-'allure open'
+run below commands:
+1. 'mvn clean install -DskipTests' in main directory
+2. 'mvn clean test allure:report' inside 'selenium_tests' directory
+
+To generate and open allure report, first add absolute path of allure/bin folder (which should be located in "/selenium_tests/.allure/allure-2.14.0/bin") to PATH Environment Variable,
+  then run:
+1. 'allure generate target/allure-results --clean'
+2. 'allure open'
 
 ## Most important tools and libraries used:
 - Java 17
+- Maven 3.8.3
 - Junit 5
 - Selenium
 - Selenium-Jupiter
