@@ -36,7 +36,7 @@ then run:
 
 ## more info about API tests
 - API tests are separated from requests and helper methods as different modules, so they can be re-used in Selenium tests
-- for data objects I decided to use Record entities instead of classic Classes with lots of annotations, which in my opinion creates a nice clean look
+- for data objects I decided to use Record entities instead of classic Classes with lots of annotations, which in my opinion create a nice clean look
 - inside the 'requests' directory I kept the order of classes which reflects the endpoints order. It later helps you find something in the thicket of endpoints more easily. I saw a lot of API automated tests repositories with test-files names that didn't correspond to the endpoints names nor to the order of them and it was a nightmare ;)
 - tests execution is paralleled by classes, tests inside the class run one by one
 - I wanted to show a cross-section of API tests I use to write - from atomic, integration solutions like "givenRegisteredUserWhenNoBasicAuthThen401" test which verifies one specific behaviour to e2e tests like "articleFlow" test.
@@ -68,7 +68,7 @@ I created 2 test files with 4 tests in total, for sign-In and article features.
 - Rest-assured requests module mentioned in API Automated tests section.
 
 ## more info about GUI tests
-- core of my Selenium tests is Selenium-Jupiter framework. This is very powerful Selenium extension written to cooperate with Junit 5. One of it's main features is easy, almost maintenance-free multi-browser management. In my case, I used TestTemplate functionality coupled with Selenium-Jupiter that allow me to easily manage the browsers I want to use for my tests. I will provide more info about browser management in the project in separate paragraph.
+- core of my Selenium tests project is Selenium-Jupiter framework. This is a very powerful Selenium extension written to cooperate with Junit 5. One of it's main features is easy, almost maintenance-free multi-browser management. In my case, I used TestTemplate functionality coupled with Selenium-Jupiter that allow me to easily manage the browsers I want to use for my tests. I will provide more info about browser management in the project in separate paragraph.
 - I used classic Page Object Pattern with Page Factory.
 - tests execution is paralleled by classes, tests inside the class run one by one
 - I implemented possibility to run the tests headless - to enable/disable headless mode change 'headless' variable value in application.properties file in 'selenium_tests/src/main/resources' directory
@@ -86,7 +86,7 @@ In order to run the tests using dockerized browsers, you have to:
 2. Pull latest aerokube/selenoid image - run "docker pull aerokube/selenoid" in cmd line
 3. Rename 'docker-browsers.json' file to 'browsers.json', as this is a keyword used by Selenium-Jupiter to find correct browser config file.
 ### Drivers
-What about the drivers? Selenium-Jupiter uses webdriver-manager to download proper WebDriver for the selected browsers.
+What about the drivers? Selenium-Jupiter uses webdriver-manager to download proper WebDriver for the selected browsers, so we save time on keeping the drivers updated.
 
 More info about TemplateTests usage with Selenium-Jupiter can be found here : https://bonigarcia.dev/selenium-jupiter/#template-tests
 

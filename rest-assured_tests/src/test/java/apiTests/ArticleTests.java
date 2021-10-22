@@ -38,13 +38,14 @@ public class ArticleTests extends BaseRestAssured {
     @Test
     @DisplayName("Given article created by another user, when trying to delete it, then we should get 403 forbidden response")
     public void GivenArticleWhenDeletedByAnotherUserThen403() {
-
+        // Given - create article
         Article createdArticle = new ArticleCreator().createRandomArticle(defaultTestUser.user().token());
 
         RequestSpecification reqSpecTestUser2 = RequestSpecs.setupDefaultRequestSpecification();
         reqSpecTestUser2.header("jwtauthorization", "Token " + testUser2.user().token());
-        //try to delete article by another user and verify that it's not permitted
+        // When - try to delete the article by another user
         Response deleteArticleResponse = Articles.deleteArticle(createdArticle.article().slug(), reqSpecTestUser2);
+        // Then - verify it's not permitted
         assertResponseCode(deleteArticleResponse, 403);
     }
 }

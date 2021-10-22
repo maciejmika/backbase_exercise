@@ -10,7 +10,7 @@ public class BaseSeleniumTests {
     boolean headless = Boolean.parseBoolean(appProperties.getPropertyValue("headless"));
 
     @BeforeAll
-    public static void registerUsers() {
+    public static void registerTestUser() {
         UserCreator userCreator = new UserCreator();
         defaultTestUser = userCreator.createRandomUser();
     }

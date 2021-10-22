@@ -36,7 +36,11 @@ public class SignInTests extends BaseRestAssured {
     @Test
     @DisplayName("Given registered user, when signing in, then return 200 and user data with jwt token")
     public void givenRegisteredUserWhenSignInThen200() {
+
+        //When - sign in with previously registered user
         Response response = Login.authenticate(loginUser, defaultReqSpec);
+
+        // Then - verify sign in was completed successfully, check returned user data
         assertResponseCode(response, 200);
         assertContentType(response, "application/json; charset=utf-8");
         User authenticatedUser = response.getBody().as(User.class);
@@ -49,9 +53,13 @@ public class SignInTests extends BaseRestAssured {
     @DisplayName("Given unknown user, when signing in, then return 404 status code and proper message")
     public void givenUnknownUserWhenSignInThen404() {
         UserCreator userCreator = new UserCreator();
+
+        //When - try to sign in with non-existent user
         Response response = Login.authenticate(userCreator.generateRandomUserData(), defaultReqSpec);
-//        response status code verification disabled due to defect (404 status code expected)
-//        assertResponseCode(response, 422);
+        // Then - verify error was returned
+        // response status code verification disabled due to defect (404 status code expected)
+        // assertResponseCode(response, 422);
+
         assertContentType(response, "application/json; charset=utf-8");
         Error errorResponse = response.getBody().as(Error.class);
         assertThat(errorResponse.errors().emailOrPassword(), equalTo("is invalid"));

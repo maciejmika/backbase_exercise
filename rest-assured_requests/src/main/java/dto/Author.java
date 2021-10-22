@@ -9,7 +9,7 @@ public record Author(
         String username,
         String bio,
         String image,
-        String following
+        boolean following
 ) {
 }
 

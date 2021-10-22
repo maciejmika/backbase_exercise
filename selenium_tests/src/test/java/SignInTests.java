@@ -38,7 +38,7 @@ public class SignInTests extends BaseSeleniumTests {
 
     @TestTemplate
     @DisplayName("Given registered user, when we fill email and password fields and click sign in, " +
-            "we should be taken to main page and see user name in top bar")
+            "then we should be taken to main page and see user name in top bar")
     public void GivenRegisteredUserWhenSignInThenUserLogged(WebDriver driver) {
         PageObject pageObject = new PageObject(driver);
         SignInPage signInPage = new SignInPage(driver);
@@ -58,7 +58,7 @@ public class SignInTests extends BaseSeleniumTests {
 
     @TestTemplate
     @DisplayName("Given non-existent user, when we fill email and password fields and click sign in, " +
-            "we should see error about wrong email or password")
+            "then we should see error about wrong email or password")
     public void GivenUnknownUserWhenSigningInThenError(WebDriver driver) {
         PageObject pageObject = new PageObject(driver);
         SignInPage signInPage = new SignInPage(driver);
