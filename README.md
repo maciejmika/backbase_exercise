@@ -1,8 +1,9 @@
+
 # Backbase recruitment exercise by Maciej Mika
 
 # 1. Manual tests, bugs & improvements
 
-Manual test cases can be found in excel file inside 'test_cases' folder in main repo directory.
+Manual test cases can be found in excel file inside 'test_cases' folder in main repo directory.  
 I decided to cover (and further automate) cases that are in my opinion crucial for the blog website to function - Sign-in functionality and features connected to the articles - creating, editing and removing them. They also allowed me to create API and GUI automated tests in which I could show some of the design patterns and interesting solutions that I learned through my testing journey.
 
 Bugs that I caught along with suggestions for improvements can be found in excel file inside 'bugs&improvements' folder in main repo directory.
@@ -11,17 +12,23 @@ Bugs that I caught along with suggestions for improvements can be found in excel
 I created 2 test files with 5 tests in total, for sign-In and article features.
 
 ## How to run
-run below commands:
-  1. 'mvn clean install -DskipTests' in main directory
-  2. 'mvn clean test allure:report' inside 'rest-assured_tests' directory
+##### Required:
+-  Java 17
+- Maven 3.8.3
 
-To generate and open allure report, first add absolute path of allure/bin folder (which should be located in "/rest-assured_tests/.allure/allure-2.14.0/bin") to PATH Environment Variable,
-  then run:
+#### to run tests, execute below commands:
+1. 'mvn clean install -DskipTests' in main directory
+2. 'mvn clean test allure:report' inside 'rest-assured_tests' directory
+
+To generate and open allure report, first add absolute path of allure/bin folder (which should be located in "/rest-assured_tests/.allure/allure-2.14.0/bin") to PATH Environment Variable,  
+then run:
 1. 'allure generate target/allure-results --clean'
 2. 'allure open'
+
 ## Most important tools and libraries used:
+
 - Java 17
-- Maven 3.8.3 
+- Maven 3.8.3
 - Junit 5
 - Rest-Assured
 - Allure reports
@@ -38,11 +45,15 @@ To generate and open allure report, first add absolute path of allure/bin folder
 I created 2 test files with 4 tests in total, for sign-In and article features.
 
 ## How to run
-run below commands:
+##### Required:
+-  Java 17
+- Maven 3.8.3
+
+#### to run tests, execute below commands:
 1. 'mvn clean install -DskipTests' in main directory
 2. 'mvn clean test allure:report' inside 'selenium_tests' directory
 
-To generate and open allure report, first add absolute path of allure/bin folder (which should be located in "/selenium_tests/.allure/allure-2.14.0/bin") to PATH Environment Variable,
+- To generate and open allure report, first add absolute path of allure/bin folder (which should be located in "/selenium_tests/.allure/allure-2.14.0/bin") to PATH Environment Variable,  
   then run:
 1. 'allure generate target/allure-results --clean'
 2. 'allure open'
@@ -66,10 +77,10 @@ To generate and open allure report, first add absolute path of allure/bin folder
 
 
 ### Local browsers
-Inside test resources of selenium_tests module you will find browsers.json file.
+Inside test resources of selenium_tests module you will find browsers.json file.  
 This file manages the usage of browsers inside the tests. We can extend it with different types of browsers or set specific browser version. Browser "type" value without "-in-docker" suffix means test will use local browser. That's why to assure tests will run correctly, we have to have proper browsers version installed locally.
 ### Docker browsers
-Inside test resources of selenium_tests module you can find another file, called docker-browsers.json. This file holds configuration for docker browsers.
+Inside test resources of selenium_tests module you can find another file, called docker-browsers.json. This file holds configuration for docker browsers.  
 In order to run the tests using dockerized browsers, you have to:
 1. Have locally installed docker with "Expose deamon" option enabled.
 2. Pull latest aerokube/selenoid image - run "docker pull aerokube/selenoid" in cmd line
